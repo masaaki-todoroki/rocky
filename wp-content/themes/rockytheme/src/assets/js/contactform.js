@@ -7,9 +7,9 @@ $(document).ready(function () {
       {
         'path': ['/inquiries/'],
         'button': {
-          'areaClassName': 'submit-button',	//	<p class="submit-button">[submit "送信する"]</p>
-          'confirm': '<input class="button-confirm" type="button" value="確認画面へ" />',	//	html
-          'rewrite': '<input class="button-rewrite" type="button" value="修正する" />'	//	html
+          'areaClassName': 'submit-button', //  <p class="submit-button">[submit "送信する"]</p>
+          'confirm': '<input class="button-confirm" type="button" value="確認画面へ" />',  //  html
+          'rewrite': '<input class="button-rewrite" type="button" value="修正する" />'  //  html
         }
       }
     ],
@@ -69,7 +69,7 @@ $(document).ready(function () {
             child
               .change(function () {
                 $(this).parent().next().html(
-                  $('<span>').text($(this).val()).html().replace(/\n/g, '<br />')
+                  $('<span>').text($(this).val()).html().replace(/\n/g, '<br />')
                 );
               })
               .change()
@@ -134,7 +134,7 @@ $(document).ready(function () {
                     }
                   });
                 $(this).parents('.wpcf7-form-control-wrap').next().html(
-                  a.join('<br />')
+                  a.join('<br />')
                 );
               })
               .change()
@@ -168,14 +168,14 @@ $(document).ready(function () {
       $(this).find('.buttons-area-confirm').show();
 
       $(this).submit(function () {
-        $(this).find('.buttons-area input[type="submit"]').hide();
+        $(this).find('.buttons-area input[type="submit"]').hide();
       });
 
-      $(this).find('.buttons-area .button-rewrite')
+      $(this).find('.buttons-area .button-rewrite')
         .click(function () {
           var form = $(this).parents('form.wpcf7-form');
           form.addClass('wpcf7-form-mode-edit').removeClass('wpcf7-form-mode-confirm');
-          form.find('.buttons-area input[type="submit"]').show();
+          form.find('.buttons-area input[type="submit"]').show();
           form.find('.wpcf7-response-output').empty().removeClass('wpcf7-mail-sent-ok');
           form.find('.wpcf7-form-control-wrap-confirm').hide();
           form.find('.wpcf7-form-control-wrap').show();
@@ -186,12 +186,12 @@ $(document).ready(function () {
         })
         ;
 
-      $(this).find('.buttons-area-confirm .button-confirm')
+      $(this).find('.buttons-area-confirm .button-confirm')
         .click(function () {
           var form = $(this).parents('form.wpcf7-form')
             , error = form.find('ul.error-messages');
           error.empty();
-          form.find('table tr').removeClass('error');
+          form.find('table tr').removeClass('error');
           form.find('.wpcf7-form-control-wrap')
             .each(function () {
               var child = $(this).children(0)
@@ -274,8 +274,9 @@ $(document).ready(function () {
     var val = $("input[type=submit][clicked=true]").val();
     $('.button-rewrite').css('display', 'none');
   });
-  $("form input[type=submit]").click(function () {
+  $("form input[type=submit]").click(function () {
     $("input[type=submit]", $(this).parents("form")).removeAttr("clicked");
     $(this).attr("clicked", "true");
   });
 });
+
