@@ -22,6 +22,7 @@ const paths = {
     src: [
       "src/assets/scss/bundle.scss",
       "src/assets/scss/admin.scss",
+      "src/assets/scss/contact-form.scss",
     ],
     dest: "dist/assets/css"
   },
@@ -33,6 +34,7 @@ const paths = {
     src: [
       'src/assets/js/bundle.js',
       'src/assets/js/admin.js',
+      'src/assets/js/contactform.js',
       'src/assets/js/customize-preview.js',
     ],
     dest: 'dist/assets/js'
