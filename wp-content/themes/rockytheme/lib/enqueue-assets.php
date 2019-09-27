@@ -22,10 +22,10 @@ add_action('customize_preview_init', '_themename_customize_preview_js');
 //contact form 7 確認画面と完了画面のカスタマイズ
 function contact_script()
 {
-  if (is_page(2)) {
-    wp_enqueue_style('_themename-admin-stylesheet', get_template_directory_uri() . '/dist/assets/css/contactform.css', array(), '1.0.0', 'all');
-    wp_enqueue_script('contactform7confirmjs', get_stylesheet_directory_uri() . '/assets/js/contactform.js');
-  }
+  //if (is_page(2)) {
+  wp_enqueue_style('_themename-admin-stylesheet', get_template_directory_uri() . '/dist/assets/css/contactform.css', array(), '1.0.0', 'all');
+  wp_enqueue_script('_themename-scripts', get_template_directory_uri() . '/dist/assets/js/contactform.js', array('jquery'), '1.0.0', true);
+  //}
   // elseif(75) {
   // 	wp_enqueue_style('contactform7confirmcss', get_stylesheet_directory_uri() . '/assets/css/contactform.css');
   // 	wp_enqueue_script('contactform7confirm2js', get_stylesheet_directory_uri() . '/assets/js/contactform2.js');
