@@ -1,3 +1,9 @@
+<?php
+/*
+Template Name: page-inquiries
+*/
+?>
+
 <?php get_header(); ?>
 
 <div class="o-container u-margin-bottom-40">

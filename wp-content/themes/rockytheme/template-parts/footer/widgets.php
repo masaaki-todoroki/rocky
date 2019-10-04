@@ -1,5 +1,5 @@
 <?php
-$footer_layout = '3,3,3,3';
+$footer_layout = '4,4,4';
 $columns = explode(',', $footer_layout);
 $footer_bg = _themename_sanitize_footer_bg(get_theme_mod('_themename_footer_bg', 'light'));
 $widgets_active = false;

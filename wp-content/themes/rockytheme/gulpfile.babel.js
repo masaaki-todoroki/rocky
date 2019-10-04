@@ -34,8 +34,13 @@ const paths = {
     src: [
       'src/assets/js/bundle.js',
       'src/assets/js/admin.js',
-      'src/assets/js/contactform.js',
       'src/assets/js/customize-preview.js',
+      'src/assets/js/contactform-ecd.js',
+      'src/assets/js/contactform-inquiry.js',
+      'src/assets/js/contactform-ir.js',
+      'src/assets/js/contactform-mynumber.js',
+      'src/assets/js/contactform-production.js',
+      'src/assets/js/contactform-recruit.js',
     ],
     dest: 'dist/assets/js'
   },
