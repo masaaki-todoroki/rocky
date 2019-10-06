@@ -4,11 +4,6 @@ Template Name: archive-news
 */
 ?>
 
-<?php
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
-?>
-
 <?php get_header(); ?>
 
 <div class="o-container u-margin-bottom-40">
@@ -27,12 +22,25 @@ error_reporting(E_ALL);
         </ul>
 
         <ul class="">
+          <?php
+            $args= array(
+              'post_type' => 'news',
+              'posts_per_page' => 12,
+              'paged' => $paged
+            );
+            if(is_year()){
+                $setYear = get_the_date('Y');
+                $args['year'] = $setYear;
+            }
+            query_posts($args);
+          ?>
           <?php if (have_posts()) : ?>
             <?php while (have_posts()) : ?>
               <?php the_post(); ?>
               <?php get_template_part('template-parts/post/content'); ?>
             <?php endwhile; ?>
           <?php endif; ?>
+          <?php wp_reset_query(); ?>
         </ul>
 
         <div class="pagination">
