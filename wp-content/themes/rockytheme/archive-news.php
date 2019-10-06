@@ -15,7 +15,7 @@ error_reporting(E_ALL);
   <div class="o-row">
     <div class="o-row__column o-row__column--span-12 o-row__column--span-<?php echo is_active_sidebar('primary-sidebar') ? 8 : 12 ?>@medium">
       <main role="main">
-      <ul class="year-archives-list">
+        <ul class="year-archives-list">
           <?php
             $archives = get_archives_by_year();
             foreach($archives as $archive):
@@ -26,7 +26,7 @@ error_reporting(E_ALL);
           <?php endforeach; ?>
         </ul>
 
-        <ul class="year-posts">
+        <ul class="">
           <?php if (have_posts()) : ?>
             <?php while (have_posts()) : ?>
               <?php the_post(); ?>
@@ -34,6 +34,7 @@ error_reporting(E_ALL);
             <?php endwhile; ?>
           <?php endif; ?>
         </ul>
+
         <div class="pagination">
           <?php global $wp_rewrite;
           $paginate_base = get_pagenum_link(1);
