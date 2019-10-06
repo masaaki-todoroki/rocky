@@ -21,7 +21,7 @@ error_reporting(E_ALL);
             foreach($archives as $archive):
           ?>
           <li>
-            <a href="<?php echo home_url() ?><?php echo esc_html($archive->year) ?>"><?php echo esc_html($archive->year) ?></a>
+            <a href="<?php echo home_url() ?>/news/<?php echo esc_html($archive->year) ?>"><?php echo esc_html($archive->year) ?></a>
           </li>
           <?php endforeach; ?>
         </ul>
