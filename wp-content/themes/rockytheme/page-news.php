@@ -36,7 +36,7 @@ Template Name: page-news
             $posts = get_posts( $year_args );
             if( $posts ) : foreach( $posts as $post) : setup_postdata( $post ); ?>
               <li>
-                <?php the_date( 'Y年m月d日' ); ?>
+                <?php the_time( 'Y年m月d日' ); ?>
                 <?php the_author_meta( 'display_name' ); ?>
                 <?php if ( has_post_thumbnail() ) : ?>
                   <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail(); ?></a>
