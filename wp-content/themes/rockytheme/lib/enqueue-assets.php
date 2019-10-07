@@ -48,3 +48,10 @@ function contact_script()
   }
 }
 add_action('wp_head', 'contact_script');
+
+//オリジナルカスタムブロック
+function add_assets_to_block_editor()  {
+  wp_enqueue_style('_themename-blockeditor-stylesheet', get_template_directory_uri() . '/dist/assets/css/block-editor.css', array(), '1.0.0', 'all');
+  wp_enqueue_script('_themename-blockeditor-scripts', get_template_directory_uri() . '/dist/assets/js/block-editor.js', array(), '1.0.0', true);
+}
+add_action('enqueue_block_editor_assets', 'add_assets_to_block_editor');

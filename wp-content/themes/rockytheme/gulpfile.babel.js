@@ -23,6 +23,7 @@ const paths = {
       "src/assets/scss/bundle.scss",
       "src/assets/scss/admin.scss",
       "src/assets/scss/contactform.scss",
+      "src/assets/scss/block-editor.scss",
     ],
     dest: "dist/assets/css"
   },
@@ -41,6 +42,7 @@ const paths = {
       'src/assets/js/contactform-mynumber.js',
       'src/assets/js/contactform-production.js',
       'src/assets/js/contactform-recruit.js',
+      'src/assets/js/block-editor.js',
     ],
     dest: 'dist/assets/js'
   },
