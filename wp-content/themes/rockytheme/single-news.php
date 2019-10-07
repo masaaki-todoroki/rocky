@@ -30,6 +30,7 @@
           </article>
         <?php endwhile; endif; ?>
       </main>
+      <?php the_breadcrumbs(); ?>
     </div>
     <?php if (is_active_sidebar('primary-sidebar')) : ?>
       <div class="o-row__column o-row__column--span-12 o-row__column--span-4@medium">
