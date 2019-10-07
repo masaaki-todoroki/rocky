@@ -46,6 +46,23 @@
           </article>
         <?php endwhile;endif; ?>
       </main>
+      <div class="local-navigation">
+        <h6>ACCESS</h6>
+        <ul>
+          <li>
+            <a href="<?php echo home_url() ?>/access/tokyo">東京オフィス</a>
+          </li>
+          <li>
+            <a href="<?php echo home_url() ?>/access/nagoya">名古屋オフィス</a>
+          </li>
+          <li>
+            <a href="<?php echo home_url() ?>/access/osaka">大阪オフィス</a>
+          </li>
+          <li>
+            <a href="<?php echo home_url() ?>/access/fukuoka">福岡オフィス</a>
+          </li>
+        </ul>
+      </div>
     </div>
     <?php if (is_active_sidebar('primary-sidebar')) : ?>
       <div class="o-row__column o-row__column--span-12 o-row__column--span-4@medium">

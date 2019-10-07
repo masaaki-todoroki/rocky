@@ -5,10 +5,29 @@
     <div class="o-row__column o-row__column--span-12 o-row__column--span-<?php echo is_active_sidebar('primary-sidebar') ? 8 : 12 ?>@medium">
       <main role="main">
         <?php if(have_posts()): while(have_posts()):the_post(); ?>
-          <h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
-          <time datetime="<?php the_time('Y-m-d'); ?>"><?php the_time('Y.m.d'); ?></time>
-          <p><?php the_category(', '); ?></p>
-          <p><?php the_content('Read more'); ?></p>
+          <article <?php post_class(); ?>>
+            <?php if( has_post_thumbnail() ): ?>
+              <figure>
+                <?php the_post_thumbnail(); ?>
+              </figure>
+            <?php endif; ?>
+            <?php
+              $terms = get_the_terms($post->ID,'news_taxonomy');
+              foreach( $terms as $term ) {
+                echo '<a href="'.get_term_link($term->slug, 'news_taxonomy').'">'. 'CATEGORY TOP >' .'</a>';
+              }
+            ?>
+            <time datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>">
+              <i class="far fa-clock"></i>
+              <?php echo esc_html( get_the_date() ); ?>
+            </time>
+            <span>
+              <?php echo get_the_term_list($post->ID, 'news_taxonomy'); ?>
+            </span>
+            <br>
+            <h1><?php the_title(); ?></h1>
+            <?php the_content(); ?>
+          </article>
         <?php endwhile; endif; ?>
       </main>
     </div>
