@@ -25,7 +25,16 @@ Template Name: archive-news
           <?php if (have_posts()) : ?>
             <?php while (have_posts()) : ?>
               <?php the_post(); ?>
-              <?php get_template_part('template-parts/post/content'); ?>
+              <article <?php post_class(); ?>>
+                <a href="<?php the_permalink(); ?>">
+                  <?php if( has_post_thumbnail() ): ?>
+                    <figure>
+                    <?php the_post_thumbnail(); ?>
+                    </figure>
+                  <?php endif; ?>
+                  <h2><?php the_title(); ?></h2>
+                </a>
+              </article>
             <?php endwhile; ?>
           <?php endif; ?>
           <?php wp_reset_query(); ?>
