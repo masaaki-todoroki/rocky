@@ -59,6 +59,18 @@ Template Name: archive-news
                     </figure>
                   <?php endif; ?>
                   <h2><?php the_title(); ?></h2>
+                  <time datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>">
+                    <?php echo esc_html( get_the_date() ); ?>
+                  </time>
+                  <span>
+                    <?php
+                      if ($terms = get_the_terms($post->ID, 'news_taxonomy')) {
+                        foreach ( $terms as $term ) {
+                          echo esc_html($term->name);
+                        }
+                      }
+                    ?>
+                  </span>
                 </a>
               </article>
             <?php endwhile; ?>
