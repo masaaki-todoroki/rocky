@@ -94,10 +94,10 @@ Template Name: archive-news
             'base' => $paginate_base,
             'format' => $paginate_format,
             'total' => $wp_query->max_num_pages,
-            'mid_size' => 4,
+            'mid_size' => 2,
             'current' => ($paged ? $paged : 1),
-            'prev_text' => '« 前へ',
-            'next_text' => '次へ »',
+            'prev_text' => '«',
+            'next_text' => '»',
           )); ?>
         </div>
       </main>
