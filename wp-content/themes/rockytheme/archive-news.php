@@ -11,13 +11,26 @@ Template Name: archive-news
     <div class="o-row__column o-row__column--span-12 o-row__column--span-<?php echo is_active_sidebar('primary-sidebar') ? 8 : 12 ?>@medium">
       <main role="main">
         <span>年</span>
+        <?php
+          $url = esc_url($_SERVER['REQUEST_URI']);
+        ?>
         <form>
           <select onChange="location.href=value;">
             <?php
               $archives = get_archives_by_year();
               foreach($archives as $archive):
             ?>
-            <option value="<?php echo home_url() ?>/news/<?php echo esc_html($archive->year) ?>"><?php echo esc_html($archive->year.'年') ?></option>
+            <option value="<?php echo home_url() ?>/news/<?php echo esc_html($archive->year) ?>"
+              <?php 
+                if (strpos($url, esc_html($archive->year)) !== false) {
+                  echo 'selected';
+                } else {
+                  echo '';
+                }
+              ?>
+            >
+              <?php echo esc_html($archive->year.'年') ?>
+            </option>
             <?php endforeach; ?>
           </select>
         </form>
