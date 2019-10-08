@@ -3,13 +3,40 @@
 <div class="o-container u-margin-bottom-40">
   <div class="o-row">
     <div class="o-row__column o-row__column--span-12 o-row__column--span-<?php echo is_active_sidebar('primary-sidebar') ? 8 : 12 ?>@medium">
+      <ul>
+        <?php
+        $current_page_id = $wp_query->get_queried_object_id();
+        $args = array(
+          'post_type' => 'access',
+        );
+        $access_posts = get_posts($args);
+        foreach ( $access_posts as $post ) {
+          setup_postdata($post);
+          $current_class = null;
+          $listed_page_id = null;
+          $listed_page_id = $post->ID;
+          if ( $listed_page_id == $current_page_id ) {
+            $current_class = ' current_page_item';
+          }
+          ?>
+          <li class="page_item<?php echo $current_class; ?>"><a href="<?php the_permalink() ?>"><?php the_title() ?></a></li>
+        <?php
+        }	
+        ?>
+      </ul>
       <main role="main">
         <?php if (have_posts()): while (have_posts()) : the_post(); ?>
           <article id="post-<?php the_ID(); ?>" class="pages">
+            <h6>ACCESS</h6>
             <section class="pages__ttl">
               <?php the_title( '<h1><span class="">', '</span></h1>' ); ?>
             </section>
             <section class="pages__body">
+              <div>
+                <?php if( get_field('map') ): ?>
+                  <img src="<?php the_field('map'); ?>" />
+                <?php endif; ?>
+              </div>
               <table>
                   <tr>
                       <th>所在地</th>
@@ -33,35 +60,13 @@
                         <td><?php echo nl2br(get_field('overtime-entrance')); ?></td>
                     </tr>
                   <?php endif; ?>
-                  <tr>
-                    <th>地図</th>
-                    <td>
-                      <?php if( get_field('map') ): ?>
-                        <img src="<?php the_field('map'); ?>" />
-                      <?php endif; ?>
-                    </td>
-                  </tr>
               </table>
             </section>
           </article>
         <?php endwhile;endif; ?>
       </main>
       <div class="local-navigation">
-        <h6>ACCESS</h6>
-        <ul>
-          <li>
-            <a href="<?php echo home_url() ?>/access/tokyo">東京オフィス</a>
-          </li>
-          <li>
-            <a href="<?php echo home_url() ?>/access/nagoya">名古屋オフィス</a>
-          </li>
-          <li>
-            <a href="<?php echo home_url() ?>/access/osaka">大阪オフィス</a>
-          </li>
-          <li>
-            <a href="<?php echo home_url() ?>/access/fukuoka">福岡オフィス</a>
-          </li>
-        </ul>
+        <?php the_breadcrumbs(); ?>
       </div>
     </div>
     <?php if (is_active_sidebar('primary-sidebar')) : ?>
