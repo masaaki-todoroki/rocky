@@ -4,28 +4,23 @@
   <div class="o-row">
     <div class="o-row__column o-row__column--span-12 o-row__column--span-<?php echo is_active_sidebar('primary-sidebar') ? 8 : 12 ?>@medium">
       <main role="main">
+        <a href="<?php echo home_url('news') ?>">← ニュース トップ</a>
         <?php if(have_posts()): while(have_posts()):the_post(); ?>
           <article <?php post_class(); ?>>
-            <?php if( has_post_thumbnail() ): ?>
-              <figure>
-                <?php the_post_thumbnail(); ?>
-              </figure>
-            <?php endif; ?>
-            <?php
-              $terms = get_the_terms($post->ID,'news_taxonomy');
-              foreach( $terms as $term ) {
-                echo '<a href="'.get_term_link($term->slug, 'news_taxonomy').'">'. 'CATEGORY TOP >' .'</a>';
-              }
-            ?>
+            <h1><?php the_title(); ?></h1>
             <time datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>">
-              <i class="far fa-clock"></i>
               <?php echo esc_html( get_the_date() ); ?>
             </time>
             <span>
-              <?php echo get_the_term_list($post->ID, 'news_taxonomy'); ?>
+              <?php
+                if ($terms = get_the_terms($post->ID, 'news_taxonomy')) {
+                  foreach ( $terms as $term ) {
+                    echo esc_html($term->name);
+                  }
+                }
+              ?>
             </span>
             <br>
-            <h1><?php the_title(); ?></h1>
             <?php the_content(); ?>
           </article>
         <?php endwhile; endif; ?>
