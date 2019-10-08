@@ -26,6 +26,37 @@ function the_breadcrumbs(){
     ';
   }
   // 投稿の場合
+  else if (is_singular('access')) {
+    $results .=
+    '
+    <li class="l-breadcrumbs-list__item">
+      <a href="'.home_url( '/' ). 'access/ ">
+        ACCESS
+      </a>
+    </li>
+    <li class="l-breadcrumbs-list__item l-breadcrumbs-list__item--current">
+      '.get_the_title( $post ).'
+    </li>
+    ';
+  }
+  else if (is_singular('news')) {
+    $results .=
+    '
+    <li class="l-breadcrumbs-list__item">
+      <a href="'.home_url( '/' ). 'news/ ">
+        NEWS
+      </a>
+    </li>
+    <li class="l-breadcrumbs-list__item">
+      <a href="'.home_url( '/' ). 'news/'.get_the_date('Y').'">
+      '.get_the_date('Y').'
+      </a>
+    </li>
+    <li class="l-breadcrumbs-list__item l-breadcrumbs-list__item--current">
+      '.get_the_title( $post ).'
+    </li>
+    ';
+  }
   else if( is_single() ){
     if( $term ){
       $results .=
@@ -49,6 +80,7 @@ function the_breadcrumbs(){
     </li>
     ';
   }
+
   // ページの場合
   else if( is_page() ){
     // 親ページがある場合祖先から階層出力
