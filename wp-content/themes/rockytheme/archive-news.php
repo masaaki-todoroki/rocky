@@ -13,15 +13,18 @@ Template Name: archive-news
         <span>年</span>
         <?php
           $url = esc_url($_SERVER['REQUEST_URI']);
+          $current_year = get_query_var( 'year' );
+          $current_term = get_query_var( 'news_taxonomy' );
         ?>
         <form>
           <select onChange="location.href=value;">
+            <option value=""> - </option>
             <?php
               $archives = get_archives_by_year();
               foreach($archives as $archive):
             ?>
-            <option value="<?php echo home_url() ?>/news/<?php echo esc_html($archive->year) ?>"
-              <?php 
+            <option value="<?php echo get_news_archive_link( $archive->year ); ?>"
+              <?php
                 if (strpos($url, esc_html($archive->year)) !== false) {
                   echo 'selected';
                 } else {
@@ -32,6 +35,24 @@ Template Name: archive-news
               <?php echo esc_html($archive->year.'年') ?>
             </option>
             <?php endforeach; ?>
+          </select>
+          <?php if ( is_year() ) : // news_taxonomyタクソノミーでの絞り込みは、年で絞り込んでいるときだけ表示 ?>
+            <select onChange="location.href=value;">
+              <option value=""> - </option>
+              <?php
+                // 登録されているnews_taxonomyタクソノミーのタームを全て取得
+                $terms = get_terms( 'news_taxonomy', array(
+                  'hide_empty' => false,
+                ) );
+                foreach( $terms as $term ):
+              ?>
+              <option value="<?php echo get_news_archive_link( $current_year, $term->slug ); ?>"
+                <?php echo $current_term === $term->slug ? ' selected' : '' ?>
+                >
+                <?php echo $term->name ?>
+              </option>
+              <?php endforeach; ?>
+            <?php endif; ?>
           </select>
         </form>
 
@@ -45,6 +66,9 @@ Template Name: archive-news
             if(is_year()){
                 $setYear = get_the_date('Y');
                 $args['year'] = $setYear;
+            }
+            if ( $current_term ) {
+              $args['news_taxonomy'] = $current_term;
             }
             query_posts($args);
           ?>
