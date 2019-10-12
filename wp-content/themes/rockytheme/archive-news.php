@@ -56,7 +56,29 @@ Template Name: archive-news
           </select>
         </form>
 
-        <ul class="">
+		<a
+			href="<?php get_news_archive_link( $current_year ); ?>"
+			<?php echo $current_term === '' ? ' class="active"' : '' ?>
+		>
+			すべて
+		</a>
+		<?php
+			// 登録されているnews_taxonomyタクソノミーのタームを全て取得
+			$terms = get_terms( 'news_taxonomy', array(
+				'hide_empty' => false,
+			) );
+			foreach( $terms as $term ):
+		?>
+			<a
+				href="<?php echo get_news_archive_link( $current_year, $term->slug ); ?>"
+				<?php echo $current_term === '' ? ' class="active"' : '' ?>"
+			>
+				<?php echo $term->name ?>
+			</a>
+        <?php endforeach; ?>
+
+
+        <ul class="" style="margin-top: 60px;">
           <?php
             $args= array(
               'post_type' => 'news',
