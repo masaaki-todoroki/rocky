@@ -57,7 +57,7 @@ Template Name: archive-news
         </form>
 
 		<a
-			href="<?php get_news_archive_link( $current_year ); ?>"
+			href="<?php echo get_news_archive_link( $current_year ); ?>"
 			<?php echo $current_term === '' ? ' class="active"' : '' ?>
 		>
 			すべて
