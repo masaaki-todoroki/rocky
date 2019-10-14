@@ -12,3 +12,4 @@ require_once('lib/display-archive-year-list.php');
 require_once('lib/breadcrumb.php');
 
 require_once('lib/routes.php');
+require_once('lib/pre-get-posts.php');
