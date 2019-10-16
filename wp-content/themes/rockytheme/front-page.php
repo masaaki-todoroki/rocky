@@ -12,18 +12,6 @@
                   </article>
                 <?php endwhile;endif; ?>
                 <ul class="">
-                    <?php
-                        $args= array(
-                            'post_type' => 'news',
-                            'posts_per_page' => 3,
-                            'paged' => $paged
-                        );
-                        if(is_year()){
-                            $setYear = get_the_date('Y');
-                            $args['year'] = $setYear;
-                        }
-                        query_posts($args);
-                    ?>
                     <?php if (have_posts()) : ?>
                         <?php while (have_posts()) : ?>
                         <?php the_post(); ?>
@@ -51,7 +39,6 @@
                         </article>
                         <?php endwhile; ?>
                     <?php endif; ?>
-                    <?php wp_reset_query(); ?>
                 </ul>
             </main>
             <a href="<?php echo home_url('news') ?>">VIEW MORE →</a>
