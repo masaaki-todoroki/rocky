@@ -18,7 +18,7 @@ Template Name: archive-news
 				?>
 				<form>
 					<select onChange="location.href=value;">
-						<option value=""> - </option>
+						<!-- <option value=""> - </option> -->
 						<?php
 							$archives = get_archives_by_year();
 							foreach($archives as $archive):
@@ -57,26 +57,67 @@ Template Name: archive-news
 					</select>
 				</form>
 
-				<a
-					href="<?php echo get_news_archive_link( $current_year ); ?>"
-					<?php echo $current_term === '' ? ' class="active"' : '' ?>
-				>
-					すべて
-				</a>
-				<?php
-					// 登録されているnews_taxonomyタクソノミーのタームを全て取得
-					$terms = get_terms( 'news_taxonomy', array(
-						'hide_empty' => false,
-					) );
-					foreach( $terms as $term ):
-				?>
-				<a
-					href="<?php echo get_news_archive_link( $current_year, $term->slug ); ?>"
-					<?php echo $current_term === '' ? ' class="active"' : '' ?>"
-				>
-					<?php echo $term->name ?>
-				</a>
-				<?php endforeach; ?>
+				<?php if($current_year == 0): ?>
+					<?php
+						$lastarchives = get_archives_by_year();
+						foreach($lastarchives as $lastarchive){
+							break;
+						}
+					?>
+					<a
+						href="<?php echo get_news_archive_link( $lastarchive->year ); ?>"
+						<?php echo $current_term === '' ? ' class="active"' : '' ?>
+					>
+						すべて
+					</a>
+					<?php
+						// 登録されているnews_taxonomyタクソノミーのタームを全て取得
+						$terms = get_terms( 'news_taxonomy', array(
+							'hide_empty' => false,
+						) );
+						foreach( $terms as $term ):
+					?>
+					<a
+						href="<?php echo get_news_archive_link( $lastarchive->year, $term->slug ); ?>"
+						<?php
+							if (strpos($url, esc_html($term->slug)) !== false) {
+								echo 'class="active"';
+							} else {
+								echo '';
+							}
+						?>
+					>
+						<?php echo $term->name ?>
+					</a>
+					<?php endforeach; ?>
+				<?php else: ?>
+					<a
+						href="<?php echo get_news_archive_link( $current_year ); ?>"
+						<?php echo $current_term === '' ? 'class="active"' : '' ?>
+					>
+						すべて
+					</a>
+					<?php
+						// 登録されているnews_taxonomyタクソノミーのタームを全て取得
+						$terms = get_terms( 'news_taxonomy', array(
+							'hide_empty' => false,
+						) );
+						foreach( $terms as $term ):
+					?>
+					<a
+						href="<?php echo get_news_archive_link( $current_year, $term->slug ); ?>"
+						<?php
+							if (strpos($url, esc_html($term->slug)) !== false) {
+								echo 'class="active"';
+							} else {
+								echo '';
+							}
+						?>
+					>
+						<?php echo $term->name ?>
+					</a>
+					<?php endforeach; ?>
+				<?php endif; ?>
 
 
 				<ul class="" style="margin-top: 60px;">
